@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: items
+#
+#  id           :integer          not null, primary key
+#  code         :string
+#  title        :string
+#  description  :text
+#  quantity     :integer
+#  safetystock  :integer
+#  reorderlevel :integer
+#  leadtime     :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  quantity: 1
+  safetystock: 1
+  reorderlevel: 1
+
+two:
+  code: MyString
+  quantity: 1
+  safetystock: 1
+  reorderlevel: 1
