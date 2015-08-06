@@ -1,0 +1,36 @@
+<div id="item-order">
+  <h3>Order list</h3>
+
+  <br><br>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Title</th>
+            <th class="center">Quantity</th>
+            <th class="center">Reorder level</th>
+            <th class="center">Safety Stock</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @items.each do |item| %>
+            <% if ((item.quantity < item.reorderlevel) || (item.quantity < item.safetystock)) %>
+              <tr>
+                <td><%= item.code %></td>
+                <td><%= link_to item.title, item_path(item)  %></td>
+                <td class="center"><%= item.quantity %></td>
+                <td class="center"><%= item.reorderlevel %></td>
+                <td class="center"><%= item.safetystock %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to content_tag(:span, "", class: "glyphicon glyphicon-arrow-left") + "Inventory", root_path %>
+    </div>
+  </div>
+</div>

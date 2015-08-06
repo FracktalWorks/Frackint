@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :users
+
+  get 'order', to: 'items#order', as: 'order_item'
+
+  devise_scope :user do
+    authenticated :user do
+      root 'items#index', as: :authenticated_root
+    end
+
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -13,7 +27,7 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+    resources :items
 
   # Example resource route with options:
   #   resources :products do

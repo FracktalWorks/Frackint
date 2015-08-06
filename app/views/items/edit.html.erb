@@ -1,2 +1,21 @@
-<h1>Items#edit</h1>
-<p>Find me in app/views/items/edit.html.erb</p>
+<div id="item-edit">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 content">
+          <h2 class="title">New item</h2>
+          <%= simple_form_for @item do |f| %>
+            <%= f.input :title %>
+            <%= f.input :code %>
+            <%= f.input :description %>
+            <%= f.input :quantity %>
+            <%= f.input :safetystock %>
+            <%= f.input :reorderlevel %>
+            <%= f.input :leadtime %>
+            <%= f.button :submit, class: "btn btn-default submit" %>
+          <% end %>
+
+          <%= link_to content_tag(:span, "", class: "glyphicon glyphicon-arrow-left") + "Back", item_path(@item) %>
+      </div>
+    </div>
+  </div>
+</div>

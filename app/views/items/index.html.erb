@@ -1,7 +1,36 @@
-<h3>Items</h3>
+<div id="item-index">
+  <h3>Inventory</h3>
 
-<ul>
-  <% @items.each do |item| %>
-    <li><%= item.code %></li>
-  <% end %>
-</ul>
+  <div class="btn-group" role="group" aria-label="...">
+    <%= link_to content_tag(:span, "", class: "glyphicon glyphicon-download-alt") + "New Item", new_item_path, class: "btn btn-default" %>
+    <%= link_to content_tag(:span, "", class: "glyphicon glyphicon-earphone") + "Order List", order_item_path, class: "btn btn-default" %>
+  </div>
+  <br><br>
+
+   <div class="panel panel-default">
+    <div class="panel-body">
+      <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Title</th>
+              <th class="center">Quantity</th>
+              <th class="center">Reorder Level</th>
+              <th class="center">Safety Stock</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @items.each do |item| %>
+              <tr>
+                <td><%= item.code %></td>
+                <td><%= link_to item.title, item_path(item)  %></td>
+                <td class="center"><%= item.quantity %></td>
+                <td class="center"><%= item.reorderlevel %></td>
+                <td class="center"><%= item.safetystock %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+</div>

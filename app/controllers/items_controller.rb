@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :logged_in_user, only: [:new, :edit, :show]
+  before_action :logged_in_user, only: [:index, :new, :edit, :show]
 
   def index
     @items = Item.all
@@ -23,18 +23,23 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
   end
 
   def update
     @item = Item.find(params[:id])
     @item.update!(item_params)
-    redirect_to action: "index"
+    redirect_to @item
   end
 
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
     redirect_to action: "index"
+  end
+
+  def order
+    @items = Item.all
   end
 
   private
